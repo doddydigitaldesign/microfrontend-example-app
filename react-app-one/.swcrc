@@ -1,0 +1,33 @@
+{
+    "module": {
+        "type": "es6",
+        "strict": false,
+        "strictMode": true,
+        "lazy": false,
+        "noInterop": false
+    },
+    "jsc": {
+        "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "decorators": false,
+            "dynamicImport": true
+        },
+        "transform": {
+            "react": {
+                "pragma": "React.createElement",
+                "pragmaFrag": "React.Fragment",
+                "throwIfNamespace": true,
+                "development": false,
+                "useBuiltins": false
+            },
+            "optimizer": {
+                "globals": {
+                    "vars": {
+                        "__DEBUG__": "true"
+                    }
+                }
+            }
+        }
+    }
+}

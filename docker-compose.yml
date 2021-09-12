@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  apporchestration:
+    image: apporchestration
+    build:
+      context: app-orchestration
+      dockerfile: ./Dockerfile
+    environment: 
+      NODE_ENV: production
+    ports: 
+      - 3000:80
+  reactappone:
+    image: reactappone
+    build:
+      context: react-app-one
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3001:80
+  reactapptwo:
+    image: reactapptwo
+    build:
+      context: react-app-two
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3002:80

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Microfrontend App</title>
+        <script type="module" src="index.js"></script>
+        <script type="module" src="/react-app-one/index.js"></script>
+        <script type="module" src="/react-app-two/index.js"></script>
+    </head>
+    <body>
+        <div id="orchestra">
+            <h1>Microfrontend App</h1>
+            <h3>Another PoC of how to go about structuring a microfrontend application.</h3>
+            <ul>
+                <li>Independent deployment: 👍</li>
+                <li>Isolation: 🤷‍♂️</li>
+                <li>Tech neutrality: 🤷‍♂️</li>
+                <li>...</li>
+            </ul>
+        </div>
+        <react-app-one data-prop="test 1"></react-app-one>
+        <react-app-two data-prop="test 2"></react-app-two>
+    </body>
+</html>
