@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Microfrontend App</title>
         <script type="module" src="index.js"></script>
+        <link rel="stylesheet" href="styles.css">
+
         <script type="module" src="/react-app-one/index.js"></script>
         <script type="module" src="/react-app-two/index.js"></script>
     </head>
@@ -14,10 +16,10 @@
             <h1>Microfrontend App</h1>
             <h3>Another PoC of how to go about structuring a microfrontend application.</h3>
             <ul>
-                <li>Independent deployment: 👍</li>
-                <li>Isolation: 🤷‍♂️</li>
-                <li>Tech neutrality: 🤷‍♂️</li>
-                <li>...</li>
+                <li>Independent deployment of each microfrontend: 👍</li>
+                <li>Style isolation: 👍</li>
+                <li>Technology neutral: 👍</li>
+                <li>Message-passing between microfrontends with BroadcastChannel: 👍</li>
             </ul>
         </div>
         <react-app-one data-prop="test 1"></react-app-one>

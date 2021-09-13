@@ -4,12 +4,15 @@ import { Standalone } from './standalone';
 
 export class ReactAppOneWebComponent extends HTMLElement {
     private readonly observer: MutationObserver;
+    private readonly channel: BroadcastChannel;
 
     constructor() {
         super();
         this.observer = new MutationObserver(() => this.update());
         this.observer.observe(this, { attributes: true });
-        // this.attachShadow({ mode: 'closed' });
+        this.attachShadow({ mode: 'open' });
+
+        this.channel = new BroadcastChannel('messages');
     }
 
     connectedCallback() {
@@ -22,7 +25,7 @@ export class ReactAppOneWebComponent extends HTMLElement {
     }
 
     private mount() {
-        render(this.getComponent(), this);
+        render(this.getComponent(), this.shadowRoot);
     }
 
     private unmount() {
@@ -30,6 +33,20 @@ export class ReactAppOneWebComponent extends HTMLElement {
     }
 
     private getComponent() {
-        return <Standalone data-prop={this.getAttribute('data-prop')} />;
+        return (
+            <div>
+                <style>
+                    {`
+                    h1,h2,h3,h4,h5,h6 {
+                      color: rebeccapurple;  
+                    }
+                    `}
+                </style>
+                <Standalone
+                    data-prop={this.getAttribute('data-prop')}
+                    channel={this.channel}
+                />
+            </div>
+        );
     }
 }
