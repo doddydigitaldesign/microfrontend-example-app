@@ -2,14 +2,32 @@
   "name": "app-orchestration",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.tsx",
   "scripts": {
-    "start": "node index.js",
+    "start": "webpack serve --port 3000",
+    "build": "webpack",
+    "serve": "npx serve public -l 80",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Daniel Sonne Lehnberg <doddy@doddy.se> (https://www.doddy.se/)",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@swc/cli": "^0.1.51",
+    "@swc/core": "^1.2.101",
+    "@types/react": "^17.0.31",
+    "@types/react-dom": "^17.0.10",
+    "external-remotes-plugin": "^1.0.0",
+    "html-webpack-plugin": "^5.4.0",
+    "swc-loader": "^0.1.15",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }

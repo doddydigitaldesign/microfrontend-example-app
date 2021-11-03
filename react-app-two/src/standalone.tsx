@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-    channel: BroadcastChannel;
+    channel?: BroadcastChannel;
 }
 
 export const Standalone: React.FC<Props> = ({
@@ -14,22 +14,21 @@ export const Standalone: React.FC<Props> = ({
     const [received, setReceived] = useState('');
 
     console.log('React App Two -> Standalone props:');
-    console.table({children, channel, ...props});
+    console.table({ children, channel, ...props });
 
     useEffect(() => {
-        channel.postMessage('Mounting React App Two -> Standalone')
+        channel?.postMessage('Mounting React App Two -> Standalone');
 
         const listener = (msgEvent: MessageEvent<any>): void => {
             console.log('React App Two -> BroadcastChannel -> Message Event:');
             console.table(msgEvent);
             setReceived(msgEvent.data);
-
         };
-        channel.addEventListener('message', listener);
+        channel?.addEventListener('message', listener);
 
         return () => {
-            channel.postMessage('Unmounting React App Two -> Standalone');
-            channel.removeEventListener('message', listener);
+            channel?.postMessage('Unmounting React App Two -> Standalone');
+            channel?.removeEventListener('message', listener);
         };
     }, []);
 
@@ -49,7 +48,7 @@ export const Standalone: React.FC<Props> = ({
                     setCounter(() => counter + 1);
                 }}
             >
-                Increment
+                Incremen
             </button>
             <button
                 onClick={(e) => {
@@ -62,7 +61,7 @@ export const Standalone: React.FC<Props> = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    channel.postMessage(message);
+                    channel?.postMessage(message);
                 }}
             >
                 <textarea
@@ -77,3 +76,5 @@ export const Standalone: React.FC<Props> = ({
         </div>
     );
 };
+
+export default Standalone;

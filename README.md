@@ -1,5 +1,17 @@
 # microfrontend-example-app
-Run locally with Docker Compose by entering the following in a terminal opened in the repository:
+Run locally by executing the following in separate terminals:
 ```sh
-docker compose up
+cd ./app-orchestration
+npm ci
+npm start
 ``` 
+```sh
+cd ./react-app-one
+npm ci
+npm start
+``` 
+```sh
+cd ./react-app-two
+npm ci
+npm start
+```
