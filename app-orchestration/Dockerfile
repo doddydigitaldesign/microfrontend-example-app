@@ -1,11 +1,11 @@
 FROM node:15-alpine AS builder
 WORKDIR /app
-COPY ./public ./public
-COPY ./nginx.conf ./nginx.conf
+COPY . .
+RUN npm install -D @swc/core-linux-musl
+RUN npm install
+RUN npm run build
 
-FROM nginx:alpine
-COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/nginx.conf
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/public .
-ENTRYPOINT ["nginx","-c","/etc/nginx/conf.d/nginx.conf","-g","daemon off;"]
+FROM node:alpine
+WORKDIR /usr/share/app
+COPY --from=builder /app/build .
+ENTRYPOINT ["npx","serve","-l","80"]

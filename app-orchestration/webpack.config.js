@@ -18,8 +18,8 @@ module.exports = {
         port: process.env.APP_PORT,
         allowedHosts: 'all',
         headers: {
-            'Access-Control-Allow-Origin': '*'
-        }
+            'Access-Control-Allow-Origin': '*',
+        },
     },
     output: {
         publicPath: 'auto',
@@ -40,15 +40,31 @@ module.exports = {
         new ModuleFederationPlugin({
             name: 'app-orchestration',
             remotes: {
-                reactAppOne:
-                    'reactAppOne@http://localhost:3001/remoteEntry.js',
-                reactAppTwo:
-                    'reactAppTwo@http://localhost:3002/remoteEntry.js',
+                reactAppOne: 'reactAppOne@http://localhost:3001/remoteEntry.js',
+                reactAppTwo: 'reactAppTwo@http://localhost:3002/remoteEntry.js',
             },
+            // shared: [
+            //     { import: 'react', singleton: true, packageName: 'react' },
+            //     { import: 'react', singleton: true, packageName: 'react-dom' },
+            // ],
             shared: {
-                ...deps,
-                react: { singleton: true, eager: true },
-                'react-dom': { singleton: true, eager: true },
+                // ...deps,
+                react: {
+                    singleton: true,
+                    shareKey: 'react',
+                    shareScope: 'default',
+                    eager: true,
+                    import: 'react',
+                    requiredVersion: deps['react'],
+                },
+                'react-dom': {
+                    singleton: true,
+                    shareKey: 'react-dom',
+                    shareScope: 'default',
+                    eager: true,
+                    import: 'react-dom',
+                    requiredVersion: deps['react-dom'],
+                },
             },
         }),
         new ExternalTemplateRemotesPlugin(),

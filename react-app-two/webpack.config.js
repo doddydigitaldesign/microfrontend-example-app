@@ -32,8 +32,8 @@ module.exports = {
         static: path.join(__dirname, 'build'),
         port: 3002,
         headers: {
-            'Access-Control-Allow-Origin': '*'
-        }
+            'Access-Control-Allow-Origin': '*',
+        },
     },
     plugins: [
         // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
@@ -44,9 +44,23 @@ module.exports = {
                 './App': './src/standalone',
             },
             shared: {
-                ...deps,
-                react: { singleton: true, eager: true },
-                'react-dom': { singleton: true, eager: true },
+                // ...deps,
+                react: {
+                    singleton: true,
+                    shareKey: 'react',
+                    shareScope: 'default',
+                    eager: true,
+                    import: 'react',
+                    requiredVersion: deps['react'],
+                },
+                'react-dom': {
+                    singleton: true,
+                    shareKey: 'react-dom',
+                    shareScope: 'default',
+                    eager: true,
+                    import: 'react-dom',
+                    requiredVersion: deps['react-dom'],
+                },
             },
         }),
         new HtmlWebpackPlugin({

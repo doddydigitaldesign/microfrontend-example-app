@@ -1,3 +1,10 @@
+import {
+    CssBaseline,
+    Paper,
+    ThemeProvider,
+    Typography,
+    unstable_createMuiStrictModeTheme
+} from '@mui/material';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -33,47 +40,47 @@ export const Standalone: React.FC<Props> = ({
     }, []);
 
     return (
-        <div
-            style={{
-                minWidth: '500px',
-                minHeight: '200px',
-            }}
-            {...props}
-        >
-            <h1>React App Two</h1>
-            <p>Counter: {counter}</p>
+        <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
+            <CssBaseline />
+            <div {...props}>
+                {' '}
+                <Paper elevation={8} sx={{ padding: '2rem' }}>
+                    <Typography variant={'h2'}>React App Two</Typography>
+                    <p>Counter: {counter}</p>
 
-            <button
-                onClick={(e) => {
-                    setCounter(() => counter + 1);
-                }}
-            >
-                Incremen
-            </button>
-            <button
-                onClick={(e) => {
-                    setCounter(() => counter - 1);
-                }}
-            >
-                Decrement
-            </button>
+                    <button
+                        onClick={(e) => {
+                            setCounter(() => counter + 1);
+                        }}
+                    >
+                        Incremen
+                    </button>
+                    <button
+                        onClick={(e) => {
+                            setCounter(() => counter - 1);
+                        }}
+                    >
+                        Decrement
+                    </button>
 
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    channel?.postMessage(message);
-                }}
-            >
-                <textarea
-                    onChange={(e) => {
-                        setMessage(e.target.value);
-                    }}
-                    title={'A message to send'}
-                />
-                <button type={'submit'}>Send</button>
-            </form>
-            <p>Received: {received}</p>
-        </div>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            channel?.postMessage(message);
+                        }}
+                    >
+                        <textarea
+                            onChange={(e) => {
+                                setMessage(e.target.value);
+                            }}
+                            title={'A message to send'}
+                        />
+                        <button type={'submit'}>Send</button>
+                    </form>
+                    <p>Received: {received}</p>
+                </Paper>
+            </div>
+        </ThemeProvider>
     );
 };
 
