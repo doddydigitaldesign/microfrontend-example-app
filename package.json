@@ -1,0 +1,30 @@
+{
+  "name": "microfrontend-example-app",
+  "version": "1.0.0",
+  "description": "Run locally by executing the following in separate terminals:\r ```sh\r cd ./app-orchestration\r npm ci\r npm start\r ``` \r ```sh\r cd ./react-app-one\r npm ci\r npm start\r ``` \r ```sh\r cd ./react-app-two\r npm ci\r npm start\r ```",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start --workspace=app-orchestration\" \"npm run start --workspace=react-app-one\" \"npm run start --workspace=react-app-two\"",
+    "installDeps": "npm install && npm install --workspace=app-orchestration && npm install --workspace=react-app-one && npm install --workspace=react-app-two",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doddydigitaldesign/microfrontend-example-app.git"
+  },
+  "keywords": [],
+  "author": "Daniel Sonne Lehnberg <doddy@doddy.se> (https://www.doddy.se/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doddydigitaldesign/microfrontend-example-app/issues"
+  },
+  "homepage": "https://github.com/doddydigitaldesign/microfrontend-example-app#readme",
+  "workspaces": [
+    "app-orchestration",
+    "react-app-one",
+    "react-app-two"
+  ],
+  "devDependencies": {
+    "concurrently": "^6.4.0"
+  }
+}

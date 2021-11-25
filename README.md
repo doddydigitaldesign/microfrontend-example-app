@@ -1,17 +1,8 @@
 # microfrontend-example-app
-Run locally by executing the following in separate terminals:
+Run locally by executing the following:
 ```sh
-cd ./app-orchestration
-npm ci
-npm start
-``` 
-```sh
-cd ./react-app-one
-npm ci
-npm start
-``` 
-```sh
-cd ./react-app-two
-npm ci
+npm run installDeps
 npm start
 ```
+
+Your browser should now automatically open `http://localhost:3000` in a new tab.

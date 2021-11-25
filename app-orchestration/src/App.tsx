@@ -31,11 +31,6 @@ export const App: React.FC = (props) => {
                             Independent deployment of each microfrontend: 👍
                         </li>
                         <li>Style isolation: 👍</li>
-                        <li>Technology neutral: 👍</li>
-                        <li>
-                            Message-passing between microfrontends with
-                            BroadcastChannel: 👍
-                        </li>
                     </ul>
                     <div
                         style={{

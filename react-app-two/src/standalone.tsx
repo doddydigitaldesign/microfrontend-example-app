@@ -1,5 +1,7 @@
 import {
+    Button,
     CssBaseline,
+    Grid,
     Paper,
     ThemeProvider,
     Typography,
@@ -43,25 +45,26 @@ export const Standalone: React.FC<Props> = ({
         <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
             <CssBaseline />
             <div {...props}>
-                {' '}
                 <Paper elevation={8} sx={{ padding: '2rem' }}>
                     <Typography variant={'h2'}>React App Two</Typography>
-                    <p>Counter: {counter}</p>
+                    <Typography>Counter: {counter}</Typography>
 
-                    <button
+                    <Button
                         onClick={(e) => {
                             setCounter(() => counter + 1);
                         }}
+                        variant="contained"
                     >
-                        Incremen
-                    </button>
-                    <button
+                        Increment
+                    </Button>
+                    <Button
                         onClick={(e) => {
                             setCounter(() => counter - 1);
                         }}
+                        variant="contained"
                     >
                         Decrement
-                    </button>
+                    </Button>
 
                     <form
                         onSubmit={(e) => {
@@ -69,13 +72,21 @@ export const Standalone: React.FC<Props> = ({
                             channel?.postMessage(message);
                         }}
                     >
-                        <textarea
-                            onChange={(e) => {
-                                setMessage(e.target.value);
-                            }}
-                            title={'A message to send'}
-                        />
-                        <button type={'submit'}>Send</button>
+                        <Grid container spacing={2}>
+                            <Grid item xs={8}>
+                                <textarea
+                                    onChange={(e) => {
+                                        setMessage(e.target.value);
+                                    }}
+                                    title={'A message to send'}
+                                />
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Button variant="outlined" type={'submit'}>
+                                    Send
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </form>
                     <p>Received: {received}</p>
                 </Paper>
